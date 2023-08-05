@@ -43,9 +43,9 @@ func (user *User) ValidatePassword(password string) error {
 	return bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password))
 }
 
-func FindUserByUsername(username string) (User, error) {
+func FindUserByEmail(email string) (User, error) {
 	var user User
-	err := Database.Database.Where("username = ?", username).First(&user).Error
+	err := Database.Database.Where("email = ?", email).First(&user).Error
 	if err != nil {
 		return User{}, err
 	}
